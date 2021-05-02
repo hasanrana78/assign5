@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IamHungry</title>
+    <link rel="stylesheet" href="style1.css">
+</head>
+
+<body>
+    <center>
+        <input id="fname" type="text" name="fname">
+        <button id="btn">search</button> </center>
+    <div id="foodDetails"></div>
+    <div id="foody">
+
+    </div>
+
+    <script>
+        fetch('https://www.themealdb.com/api/json/v1/1/categories.php')
+            .then(res => res.json())
+            .then(data => displayFoods(data.categories))
+
+        var displayFoods = foods => {
+            const foodsDiv = document.getElementById('foody');
+            foods.forEach(food => {
+                const foodDiv = document.createElement('div');
+                foodDiv.className = 'food';
+                const foodInfo = `
+                            <img class='img' src="${food.strCategoryThumb}">
+                             <h3 class='name'>${food.strCategory}</h3>
+                             <button onclick="displayCountryDetails('${food.strCategoryDescription}')">details</button>`
+                foodDiv.innerHTML = foodInfo;
+                foodsDiv.appendChild(foodDiv);
+            });
+        }
+
+
+
+
+
+        // foods.forEach(food => {
+        //     const displayCountryDetails = description => {
+        //         
+        //     }
+        // })
+        //<button onclick="displayCountryDetails('${food.strCategoryDescription}')">details</button>
+        // const url = `https://restcountries.eu/rest/v2/name/${nam}`
+        //     //console.log(url);
+        // fetch(url)
+        //         .then(res => res.json())
+        //         .then(data => renderInfo(data[0]));
+
+        // }
+        // const renderInfo = country => {
+        //         const countryDiv1 = document.getElementById('countryDetail');
+        //         countryDiv1.innerHTML = `<h3 class='name'>${country.name}</h3>
+        //                          <p class='capital'>${country.capital}</p>
+        //                          <p class='capital'>Area:${country.area}</p>
+        //                          <img class='img' src="${country.flag}">`
+        //     }
+        // for (let i = 0; i < countries.length; i++) {
+        //     const country = countries[i];
+
+
+        // const h3 = document.createElement('h3');
+        // h3.innerText = country.name;
+        // const p = document.createElement('p');
+        // p.innerText = country.capital;
+        // countryDiv.appendChild(h3);
+        // countryDiv.appendChild(p);
+        //<p class='details'>${food.strCategoryDescription}</p>
+    </script>
+</body>
+
+</html>
